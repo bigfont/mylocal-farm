@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "farmApi", "src\farmApi\farmApi.xproj", "{F5811D92-18F8-4A67-AEF4-076EEA61F434}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "farmApi.Test", "test\farmApi.Test\farmApi.Test.xproj", "{B47DDA65-58D2-4FEA-A703-449FE0BC67A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,11 +24,16 @@ Global
 		{F5811D92-18F8-4A67-AEF4-076EEA61F434}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5811D92-18F8-4A67-AEF4-076EEA61F434}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5811D92-18F8-4A67-AEF4-076EEA61F434}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B47DDA65-58D2-4FEA-A703-449FE0BC67A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B47DDA65-58D2-4FEA-A703-449FE0BC67A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B47DDA65-58D2-4FEA-A703-449FE0BC67A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B47DDA65-58D2-4FEA-A703-449FE0BC67A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{F5811D92-18F8-4A67-AEF4-076EEA61F434} = {D2FDBC4A-D3A3-40E0-98E7-C92F442B8193}
+		{B47DDA65-58D2-4FEA-A703-449FE0BC67A9} = {D2FDBC4A-D3A3-40E0-98E7-C92F442B8193}
 	EndGlobalSection
 EndGlobal

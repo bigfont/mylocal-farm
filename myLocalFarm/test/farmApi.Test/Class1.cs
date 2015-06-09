@@ -1,16 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Xunit;
 
 namespace farmApi.Test
 {
-    // This project can output the Class library as a NuGet Package.
-    // To enable this option, right-click on the project and select the Properties menu item. In the Build tab select "Produce outputs on build".
     public class Class1
     {
         public Class1()
         {
+
+        }
+
+        [Fact]
+        public void PassingTest()
+        {
+            Assert.Equal(4, 2 + 2);
+        }
+
+        [Fact]
+        public void FailingTest()
+        {
+            Assert.Equal(5, 2 + 2);
+        }
+
+        [Theory]
+        [InlineData(3)]
+        [InlineData(4)]
+        public void SimpleTheory(int value)
+        {
+            Assert.Equal(3, value);
         }
     }
 }
