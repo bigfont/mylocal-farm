@@ -5,7 +5,8 @@
     "": [
       "farmApi ",
       "xunit >= 2.1.0-beta2-build2981",
-      "xunit.runner.dnx >= 2.1.0-*"
+      "xunit.runner.dnx >= 2.1.0-*",
+      "Moq >= 4.2.1502.911"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": [
@@ -3497,6 +3498,39 @@
         "lib/contract/Microsoft.Win32.Registry.dll",
         "lib/net45/Microsoft.Win32.Registry.dll",
         "lib/portable-wpa81+wp80+win80+net45+aspnetcore50/Microsoft.Win32.Registry.dll"
+      ]
+    },
+    "Moq/4.2.1502.0911": {
+      "serviceable": false,
+      "sha": "Ng1jKw2jlwaBEh16+AeIfoS7jj9Hd9Zzf7OafgTsl9fIRv0bICqhAsmLaPHTsnpd4ReJyMMUyNGUGKpyp+mqkg==",
+      "frameworks": {
+        "DNX,Version=v4.5.1": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [
+            "lib/net40/Moq.dll"
+          ],
+          "compileAssemblies": [
+            "lib/net40/Moq.dll"
+          ]
+        },
+        "DNXCore,Version=v5.0": {
+          "dependencies": {},
+          "frameworkAssemblies": [],
+          "runtimeAssemblies": [],
+          "compileAssemblies": []
+        }
+      },
+      "files": [
+        "Moq.4.2.1502.0911.nupkg",
+        "Moq.4.2.1502.0911.nupkg.sha512",
+        "Moq.nuspec",
+        "lib/net35/Moq.dll",
+        "lib/net35/Moq.xml",
+        "lib/net40/Moq.dll",
+        "lib/net40/Moq.xml",
+        "lib/sl4/Moq.Silverlight.dll",
+        "lib/sl4/Moq.Silverlight.xml"
       ]
     },
     "Newtonsoft.Json/6.0.6": {

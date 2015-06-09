@@ -9,7 +9,8 @@
   "dependencies": {
     "farmApi": "",
     "xunit": "2.1.0-beta2-build2981",
-    "xunit.runner.dnx": "2.1.0-*"
+    "xunit.runner.dnx": "2.1.0-*",
+    "Moq":  "4.2.1502.911"
   },
   "commands": {
     "test": "xunit.runner.dnx"

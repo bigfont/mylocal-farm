@@ -2,6 +2,7 @@
 
 using farmApi.Models;
 using Microsoft.Data.Entity;
+using farmApi.DAL.Interfaces;
 
 namespace farmApi.DAL
 {

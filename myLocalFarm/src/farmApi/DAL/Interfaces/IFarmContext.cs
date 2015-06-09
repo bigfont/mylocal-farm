@@ -3,7 +3,7 @@
 using farmApi.Models;
 using Microsoft.Data.Entity;
 
-namespace farmApi.DAL
+namespace farmApi.DAL.Interfaces
 {
     public interface IFarmContext
     {
