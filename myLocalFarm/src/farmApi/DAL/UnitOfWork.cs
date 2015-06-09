@@ -14,19 +14,8 @@ namespace farmApi.DAL
     {
         private FarmContext _context;
 
-        private GenericRepository<TodoItem> _todoItemRepository;
-        public GenericRepository<TodoItem> TodoItemRepository
-        {
-            get
-            {
-                if (_todoItemRepository == null)
-                {
-                    // TODO Should we be using DI here?
-                    _todoItemRepository = new GenericRepository<TodoItem>(_context);
-                }
-                return _todoItemRepository;
-            }
-        }
+        [FromServices]
+        public IGenericRepository<TodoItem> TodoItemRepository { get; }
 
         public UnitOfWork([FromServices] FarmContext context)
         {

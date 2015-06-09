@@ -13,7 +13,6 @@ namespace farmApi.DAL
         internal IFarmContext context;
         internal DbSet<TEntity> dbSet;
 
-        // TODO Consider using an interface with dependency injection
         public GenericRepository(IFarmContext context)
         {
             this.context = context;
