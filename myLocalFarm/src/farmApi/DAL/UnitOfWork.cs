@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using farmApi.Models;
 using farmApi.DAL.Interfaces;
 using Microsoft.AspNet.Mvc;
@@ -10,44 +12,44 @@ namespace farmApi.DAL
     /// </summary>
     public class UnitOfWork : IDisposable, IUnitOfWork
     {
-        private FarmContext context;
+        private FarmContext _context;
 
-        private GenericRepository<TodoItem> todoItemRepository;
+        private GenericRepository<TodoItem> _todoItemRepository;
         public GenericRepository<TodoItem> TodoItemRepository
         {
             get
             {
-                if (this.todoItemRepository == null)
+                if (_todoItemRepository == null)
                 {
                     // TODO Should we be using DI here?
-                    this.todoItemRepository = new GenericRepository<TodoItem>(context);
+                    _todoItemRepository = new GenericRepository<TodoItem>(_context);
                 }
-                return this.todoItemRepository;
+                return _todoItemRepository;
             }
         }
 
         public UnitOfWork([FromServices] FarmContext context)
         {
-            this.context = context;
+            _context = context;
         }
 
         public void Save()
         {
-            context.SaveChanges();
+            _context.SaveChanges();
         }
 
-        private bool displosed = false;
+        private bool _displosed = false;
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.displosed)
+            if (!_displosed)
             {
                 if (disposing)
                 {
-                    context.Dispose();
+                    _context.Dispose();
                 }
             }
-            this.displosed = true;
+            _displosed = true;
         }
 
         public void Dispose()

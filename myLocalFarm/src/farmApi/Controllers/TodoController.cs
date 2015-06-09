@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿
+
+using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using farmApi.Models;
@@ -11,25 +13,25 @@ namespace farmApi.Controllers
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
         public TodoController(IUnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
         }
 
         // GET /api/todo
         [HttpGet]
         public IEnumerable<TodoItem> GetAll()
         {
-            return unitOfWork.TodoItemRepository.All();
+            return _unitOfWork.TodoItemRepository.All();
         }
 
         // GET /api/todo/1
         [HttpGet("{id:int}", Name = "GetByIdRoute")]
         public IActionResult GetById(int id)
         {
-            var items = unitOfWork.TodoItemRepository.GetById(id);
+            var items = _unitOfWork.TodoItemRepository.GetById(id);
             if (items == null)
             {
                 return HttpNotFound();
@@ -47,7 +49,7 @@ namespace farmApi.Controllers
             }
             else
             {
-                unitOfWork.TodoItemRepository.Add(item);
+                _unitOfWork.TodoItemRepository.Add(item);
 
                 string url = Url.RouteUrl("GetByIdRoute", new { id = item.Id },
                     Request.Scheme, Request.Host.ToUriComponent());
@@ -61,7 +63,7 @@ namespace farmApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteItem(int id)
         {
-            if (unitOfWork.TodoItemRepository.TryDelete(id))
+            if (_unitOfWork.TodoItemRepository.TryDelete(id))
             {
                 return new HttpStatusCodeResult(204);
             }
