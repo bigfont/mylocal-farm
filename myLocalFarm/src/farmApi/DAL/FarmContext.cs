@@ -3,7 +3,7 @@ using Microsoft.Data.Entity;
 
 namespace farmApi.DAL
 {
-    public class FarmContext : DbContext
+    public class FarmContext : DbContext, IFarmContext
     {
         public DbSet<TodoItem> TodoItems { get; set; }
 
