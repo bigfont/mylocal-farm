@@ -2,9 +2,8 @@
 
 namespace farmApi.Models
 {
-    public class TodoItem
+    public class TodoItem : FarmEntity
     {
-        public int Id { get; set; }
         [Required]
         public string Title { get; set; }
         public bool IsDone { get; set; }

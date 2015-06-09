@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Http;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.Framework.DependencyInjection;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.SqlServer;
+using Microsoft.Data.Entity.InMemory;
+using farmApi.DAL.Interfaces;
+using farmApi.DAL;
 using farmApi.Models;
+using System;
 
 namespace farmApi
 {
@@ -15,14 +16,40 @@ namespace farmApi
         {
             services.AddMvc();
 
+            // entity framework
+            services
+                .AddEntityFramework()
+                .AddInMemoryStore()
+                .AddDbContext<FarmContext>(options =>
+                {
+                    options.UseInMemoryStore(persist: true);
+                });
+
             // dependency injection
-            services.AddSingleton<ITodoRepository, TodoRepository>();
+            services.AddSingleton<IUnitOfWork, UnitOfWork>();
         }
 
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)
         {
             app.UseMvc();
             app.UseWelcomePage();
+
+            // entity framework
+            var itemsToSeed = 50;
+            var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
+
+            for (var i = 0; i < itemsToSeed; ++i)
+            {
+                unitOfWork
+                    .TodoItemRepository
+                    .Add(new TodoItem()
+                    {
+                        Id = 0,
+                        Title = string.Format("Item Number {0}", i)
+                    });
+            }       
+                 
+            unitOfWork.Save();
         }
     }
 }
