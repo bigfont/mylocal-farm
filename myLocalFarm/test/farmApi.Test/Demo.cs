@@ -2,13 +2,12 @@
 
 namespace farmApi.Test
 {
-    public class Class1
+    /// <summary>
+    /// For details see http://xunit.github.io/docs/getting-started-dnx.html
+    /// See also https://github.com/aspnet/Testing/wiki/How-to-create-test-projects
+    /// </summary>
+    public class Demo
     {
-        public Class1()
-        {
-
-        }
-
         [Fact]
         public void PassingTest()
         {
