@@ -10,11 +10,11 @@ namespace farmApi.DAL
 {
     public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : FarmEntity
     {
-        internal FarmContext context;
+        internal IFarmContext context;
         internal DbSet<TEntity> dbSet;
 
         // TODO Consider using an interface with dependency injection
-        public GenericRepository(FarmContext context)
+        public GenericRepository(IFarmContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

@@ -8,5 +8,7 @@ namespace farmApi.DAL
     public interface IFarmContext
     {
         DbSet<TodoItem> TodoItems { get; set; }
+
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }
