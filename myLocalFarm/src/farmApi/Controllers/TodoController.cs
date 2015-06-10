@@ -31,12 +31,12 @@ namespace farmApi.Controllers
         [HttpGet("{id:int}", Name = "GetByIdRoute")]
         public IActionResult GetById(int id)
         {
-            var items = _unitOfWork.TodoItemRepository.GetById(id);
-            if (items == null)
+            var item = _unitOfWork.TodoItemRepository.GetById(id);
+            if (item == null)
             {
                 return HttpNotFound();
             }
-            return new ObjectResult(items);
+            return new ObjectResult(item);
         }
 
         // POST /api/todo
@@ -49,13 +49,8 @@ namespace farmApi.Controllers
             }
             else
             {
-                _unitOfWork.TodoItemRepository.Add(item);
-
-                string url = Url.RouteUrl("GetByIdRoute", new { id = item.Id },
-                    Request.Scheme, Request.Host.ToUriComponent());
-
+                _unitOfWork.TodoItemRepository.Add(item);                
                 Context.Response.StatusCode = 201;
-                Context.Response.Headers["Location"] = url;
             }
         }
 
