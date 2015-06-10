@@ -8,6 +8,14 @@ using Microsoft.AspNet.Identity;
 
 namespace farmApi.Test
 {
+    /// <summary>
+    /// Tests the Account Controller
+    /// </summary>
+    /// <remarks>
+    /// We are NOT also testing:
+    /// 1. The data access layer. So, in this test class, we don't check whether user creation succeeded in the data store.
+    /// 2. The emailer service. Neither do we test whether the emailer actually sent an email.
+    /// </remarks>
     public class AccountControllerTests
     {
         public AccountControllerTests()
