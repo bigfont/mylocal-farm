@@ -17,6 +17,9 @@ namespace farmApi.DAL
         [FromServices]
         public IGenericRepository<TodoItem> TodoItemRepository { get; }
 
+        [FromServices]
+        public IUserManager<User> UserManager { get; }
+
         public UnitOfWork([FromServices] FarmContext context)
         {
             _context = context;
