@@ -39,16 +39,14 @@ namespace farmApi.Test
             Assert.Equal(500, result.StatusCode);
         }
 
-
-        [Theory]
-        [InlineData("shaun@bigfont.ca", "test123", "test123")]
-        public void PostRegister_CreatesANewUnconfirmedUser(string email, string password, string confirm)
+        [Fact]
+        public void EmailVerification_Returns200OnSuccess()
         {
 
         }
 
         [Fact]
-        public void EmailVerification_ConfirmsANewUser()
+        public void EmailVerification_Returns500OnFailure()
         {
 
         }
