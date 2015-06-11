@@ -14,13 +14,24 @@ namespace farmApi.DAL
     {
         private FarmContext _context;
 
-        [FromServices]
-        public IGenericRepository<TodoItem> TodoItemRepository { get; }
+        private IGenericRepository<TodoItem> _todoItemRepository;
+        public IGenericRepository<TodoItem> TodoItemRepository
+        {
+            get
+            {
+                if (_todoItemRepository == null)
+                {
+                    _todoItemRepository = new GenericRepository<TodoItem>(_context);
+                }
+                return _todoItemRepository;
+            }
+        }
 
         [FromServices]
         public IUserManager<User> UserManager { get; }
 
-        public UnitOfWork([FromServices] FarmContext context)
+        public UnitOfWork(
+            [FromServices] FarmContext context)
         {
             _context = context;
         }

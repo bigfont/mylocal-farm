@@ -5,6 +5,7 @@ using Microsoft.Framework.DependencyInjection;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.SqlServer;
 using Microsoft.Data.Entity.InMemory;
+using Microsoft.AspNet.Http;
 using farmApi.DAL.Interfaces;
 using farmApi.DAL;
 using farmApi.Models;
@@ -34,7 +35,6 @@ namespace farmApi
         public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)
         {
             app.UseMvc();
-            app.UseWelcomePage();
 
             // entity framework
             var itemsToSeed = 50;
@@ -52,6 +52,10 @@ namespace farmApi
             }
 
             unitOfWork.Save();
+
+            app.Run(async context => {
+                await context.Response.WriteAsync("Hello World.");
+            });
         }
     }
 }
