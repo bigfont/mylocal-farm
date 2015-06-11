@@ -36,6 +36,11 @@ namespace farmApi
         {
             app.UseMvc();
 
+            // TODO 
+            // Add an authorization server endpoint.
+            // Is it even possible?
+            // E.g. /Token
+
             // entity framework
             var itemsToSeed = 50;
             var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
