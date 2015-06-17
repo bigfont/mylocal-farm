@@ -5,13 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using FarmApi.Models;
 
-namespace FarmApi.DAL.Interfaces
+namespace FarmDAL.Models
 {
-    public interface IUnitOfWork
+    internal class FarmEntity
     {
-        GenericRepository<TodoItem> TodoItemRepository { get; }
-        void Save();
+        public virtual int Id { get; set; }
     }
 }

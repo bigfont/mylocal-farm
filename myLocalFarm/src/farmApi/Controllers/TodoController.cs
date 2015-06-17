@@ -4,9 +4,9 @@
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using FarmApi.Models;
-using FarmApi.DAL;
-using FarmApi.DAL.Interfaces;
+using FarmApi.ViewModels;
+using FarmBLL.Models;
+using FarmBLL.Repository;
 
 namespace FarmApi.Controllers
 {
@@ -23,16 +23,22 @@ namespace FarmApi.Controllers
 
         // GET /api/todo
         [HttpGet]
-        public IEnumerable<TodoItem> GetAll()
+        public IEnumerable<TodoItemViewModel> GetAll()
         {
-            return _unitOfWork.TodoItemRepository.All();
+            var results = _unitOfWork.Query<TodoItem>();
+            var vm = results.Select(r => new TodoItemViewModel()
+            {
+                Title = r.Title,
+                IsDone = r.IsDone
+            });
+            return vm.ToList();
         }
 
         // GET /api/todo/1
         [HttpGet("{id:int}", Name = "GetByIdRoute")]
         public IActionResult GetById(int id)
         {
-            var item = _unitOfWork.TodoItemRepository.GetById(id);
+            var item = _unitOfWork.Query<TodoItem>();
             if (item == null)
             {
                 return HttpNotFound();
@@ -50,7 +56,7 @@ namespace FarmApi.Controllers
             }
             else
             {
-                _unitOfWork.TodoItemRepository.Add(item);
+                _unitOfWork.Create<TodoItem>(item);
                 Context.Response.StatusCode = 201;
             }
         }
@@ -59,14 +65,8 @@ namespace FarmApi.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteItem(int id)
         {
-            if (_unitOfWork.TodoItemRepository.TryDelete(id))
-            {
-                return new HttpStatusCodeResult(204);
-            }
-            else
-            {
-                return HttpNotFound();
-            }
+            _unitOfWork.Delete<TodoItem>(new TodoItem { Id = id });
+            return new HttpStatusCodeResult(204);
         }
     }
 }

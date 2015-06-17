@@ -7,10 +7,15 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.SqlServer;
 using Microsoft.Data.Entity.InMemory;
 using Microsoft.AspNet.Http;
-using FarmApi.DAL.Interfaces;
-using FarmApi.DAL;
-using FarmApi.Models;
 using System;
+
+// BLL
+using FarmBLL.Repository;
+using FarmBLL.Models;
+
+// DAL
+using FarmDAL.Repository;
+using FarmDAL.Models;
 
 namespace FarmApi
 {
@@ -19,8 +24,40 @@ namespace FarmApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            this.ConfigurePersistenceServices(services);
+        }
 
-            // entity framework
+        public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)
+        {
+            app.UseMvc();
+
+            this.ConfigurePersistence(serviceProvider);
+
+            app.Run(async context =>
+            {
+                await context.Response.WriteAsync("Hello World.");
+            });
+        }
+
+        private void ConfigurePersistence(IServiceProvider serviceProvider)
+        {
+            var itemsToSeed = 50;
+            var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
+
+            for (var i = 0; i < itemsToSeed; ++i)
+            {
+                unitOfWork.Create(new TodoItem()
+                {
+                    Title = string.Format("Item Number {0}", i)
+                });
+            }
+
+            unitOfWork.Save();
+        }
+
+        private void ConfigurePersistenceServices(IServiceCollection services)
+        {
+            // choose the persistence mechanism
             services
                 .AddEntityFramework()
                 .AddInMemoryStore()
@@ -29,40 +66,8 @@ namespace FarmApi
                     options.UseInMemoryStore(persist: true);
                 });
 
-            // dependency injection
+            // choose the unit of work implementation
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
-        }
-
-        public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)
-        {
-            app.UseMvc();
-
-            // TODO 
-            // Add an authorization server endpoint.
-            // Is it even possible?
-            // E.g. /Token
-
-            // entity framework
-            var itemsToSeed = 50;
-            var unitOfWork = serviceProvider.GetRequiredService<IUnitOfWork>();
-
-            for (var i = 0; i < itemsToSeed; ++i)
-            {
-                unitOfWork
-                    .TodoItemRepository
-                    .Add(new TodoItem()
-                    {
-                        Id = 0,
-                        Title = string.Format("Item Number {0}", i)
-                    });
-            }
-
-            unitOfWork.Save();
-
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("Hello World.");
-            });
         }
     }
 }
