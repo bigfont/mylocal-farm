@@ -66,7 +66,7 @@ namespace farmApi.Test
         private AccountController GetController()
         {
             // User Manager
-            var mockUserManager = new Mock<IUserManager<User>>();
+            var mockUserManager = new Mock<UserManager<User>>();
 
             // CreateAsync
             mockUserManager

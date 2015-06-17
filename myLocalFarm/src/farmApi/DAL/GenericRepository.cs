@@ -8,12 +8,12 @@ using farmApi.DAL.Interfaces;
 
 namespace farmApi.DAL
 {
-    public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : FarmEntity
+    public class GenericRepository<TEntity> where TEntity : FarmEntity
     {
-        internal IFarmContext context;
+        internal FarmContext context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(IFarmContext context)
+        public GenericRepository(FarmContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

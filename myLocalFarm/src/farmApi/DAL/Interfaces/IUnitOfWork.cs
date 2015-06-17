@@ -10,8 +10,7 @@ namespace farmApi.DAL.Interfaces
 {
     public interface IUnitOfWork
     {
-        IGenericRepository<TodoItem> TodoItemRepository { get; }
-        IUserManager<User> UserManager { get; }
+        GenericRepository<TodoItem> TodoItemRepository { get; }
         void Save();
     }
 }

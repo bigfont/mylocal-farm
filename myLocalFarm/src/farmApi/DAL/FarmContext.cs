@@ -6,7 +6,7 @@ using farmApi.DAL.Interfaces;
 
 namespace farmApi.DAL
 {
-    public class FarmContext : DbContext, IFarmContext
+    public class FarmContext : DbContext
     {
         public DbSet<TodoItem> TodoItems { get; set; }
 

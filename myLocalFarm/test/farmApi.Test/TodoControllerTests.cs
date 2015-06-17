@@ -13,6 +13,7 @@ using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Routing;
 using Microsoft.Net.Http.Server;
 using Microsoft.AspNet.Http.Core;
+using farmApi.DAL;
 
 namespace farmApi.Test
 {
@@ -89,7 +90,7 @@ namespace farmApi.Test
             Assert.Equal(1, initialCount - finalCount);
         }
 
-        private IGenericRepository<TodoItem> CreateMockTodoItemRepository()
+        private GenericRepository<TodoItem> CreateMockTodoItemRepository()
         {
             // add items
             this.todoItems = new List<TodoItem>();
@@ -99,7 +100,7 @@ namespace farmApi.Test
             }
 
             // create repo implementation
-            var mockRepo = new Mock<IGenericRepository<TodoItem>>();
+            var mockRepo = new Mock<GenericRepository<TodoItem>>();
 
             // All()
             mockRepo

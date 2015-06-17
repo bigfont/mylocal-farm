@@ -1,9 +1,9 @@
 ﻿
-
 using System;
 using farmApi.Models;
 using farmApi.DAL.Interfaces;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Identity;
 
 namespace farmApi.DAL
 {
@@ -14,8 +14,8 @@ namespace farmApi.DAL
     {
         private FarmContext _context;
 
-        private IGenericRepository<TodoItem> _todoItemRepository;
-        public IGenericRepository<TodoItem> TodoItemRepository
+        private GenericRepository<TodoItem> _todoItemRepository;
+        public GenericRepository<TodoItem> TodoItemRepository
         {
             get
             {
@@ -27,11 +27,7 @@ namespace farmApi.DAL
             }
         }
 
-        [FromServices]
-        public IUserManager<User> UserManager { get; }
-
-        public UnitOfWork(
-            [FromServices] FarmContext context)
+        public UnitOfWork(FarmContext context)
         {
             _context = context;
         }
