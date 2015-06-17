@@ -1,13 +1,14 @@
-﻿
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.AspNet.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using farmApi.Models;
-using farmApi.DAL;
-using farmApi.DAL.Interfaces;
+using FarmApi.Models;
+using FarmApi.DAL;
+using FarmApi.DAL.Interfaces;
 
-namespace farmApi.Controllers
+namespace FarmApi.Controllers
 {
     // api/todo
     [Route("api/[controller]")]
@@ -49,7 +50,7 @@ namespace farmApi.Controllers
             }
             else
             {
-                _unitOfWork.TodoItemRepository.Add(item);                
+                _unitOfWork.TodoItemRepository.Add(item);
                 Context.Response.StatusCode = 201;
             }
         }

@@ -1,4 +1,5 @@
-﻿
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.AspNet.Builder;
 using Microsoft.Framework.DependencyInjection;
@@ -6,12 +7,12 @@ using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.SqlServer;
 using Microsoft.Data.Entity.InMemory;
 using Microsoft.AspNet.Http;
-using farmApi.DAL.Interfaces;
-using farmApi.DAL;
-using farmApi.Models;
+using FarmApi.DAL.Interfaces;
+using FarmApi.DAL;
+using FarmApi.Models;
 using System;
 
-namespace farmApi
+namespace FarmApi
 {
     public class Startup
     {
@@ -58,7 +59,8 @@ namespace farmApi
 
             unitOfWork.Save();
 
-            app.Run(async context => {
+            app.Run(async context =>
+            {
                 await context.Response.WriteAsync("Hello World.");
             });
         }

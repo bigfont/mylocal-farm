@@ -1,11 +1,13 @@
-﻿
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
 using System;
-using farmApi.Models;
-using farmApi.DAL.Interfaces;
+using FarmApi.Models;
+using FarmApi.DAL.Interfaces;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Identity;
 
-namespace farmApi.DAL
+namespace FarmApi.DAL
 {
     /// <summary>
     /// Lets all repositories shared the same context instance.

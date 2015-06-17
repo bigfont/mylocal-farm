@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using System.Collections.Generic;
 using System.Linq;
 using System;
 
@@ -20,8 +23,8 @@ namespace farmApi.Test
     public class TodoControllerTests
     {
         private const int ItemsToCreate = 10;
-        private IUnitOfWork unitOfWork;
-        private List<TodoItem> todoItems;
+        private IUnitOfWork _unitOfWork;
+        private List<TodoItem> _todoItems;
 
         public TodoControllerTests()
         {
@@ -33,13 +36,13 @@ namespace farmApi.Test
                 .Setup(x => x.TodoItemRepository)
                 .Returns(mockRepo);
 
-            this.unitOfWork = mockUnitOfWork.Object;
+            _unitOfWork = mockUnitOfWork.Object;
         }
 
         [Fact]
         public void GetAll_GetsAllTodoItems()
         {
-            var controller = new TodoController(this.unitOfWork);
+            var controller = new TodoController(_unitOfWork);
             var result = controller.GetAll();
             Assert.Equal(ItemsToCreate, result.Count());
         }
@@ -50,7 +53,7 @@ namespace farmApi.Test
         [InlineData(2)]
         public void GetTodoItemById(int id)
         {
-            var controller = new TodoController(this.unitOfWork);
+            var controller = new TodoController(_unitOfWork);
             var result = controller.GetById(id) as ObjectResult;
             var todoItem = result.Value as TodoItem;
             Assert.Equal(id, todoItem.Id);
@@ -60,7 +63,7 @@ namespace farmApi.Test
         [InlineData(20)]
         public void CreateTodoItem(int id)
         {
-            var controller = new TodoController(this.unitOfWork);
+            var controller = new TodoController(_unitOfWork);
 
             var context = new DefaultHttpContext();
             controller.ActionContext.HttpContext = context;
@@ -78,7 +81,7 @@ namespace farmApi.Test
         [Fact]
         public void DeleteItem()
         {
-            var controller = new TodoController(this.unitOfWork);
+            var controller = new TodoController(_unitOfWork);
 
             var all = controller.GetAll();
             var initialCount = all.Count();
@@ -93,10 +96,10 @@ namespace farmApi.Test
         private GenericRepository<TodoItem> CreateMockTodoItemRepository()
         {
             // add items
-            this.todoItems = new List<TodoItem>();
+            _todoItems = new List<TodoItem>();
             for (var i = 0; i < ItemsToCreate; ++i)
             {
-                todoItems.Add(new TodoItem { Id = i });
+                _todoItems.Add(new TodoItem { Id = i });
             }
 
             // create repo implementation
@@ -105,14 +108,14 @@ namespace farmApi.Test
             // All()
             mockRepo
                 .Setup(x => x.All())
-                .Returns(todoItems);
+                .Returns(_todoItems);
 
             // GetById()
             mockRepo
                 .Setup(x => x.GetById(It.IsAny<int>()))
                 .Returns<int>(id =>
                 {
-                    return todoItems.First(item => item.Id == id);
+                    return _todoItems.First(item => item.Id == id);
                 });
 
             // CreateTodoItem
@@ -120,7 +123,7 @@ namespace farmApi.Test
                 .Setup(x => x.Add(It.IsAny<TodoItem>()))
                 .Callback<TodoItem>(item =>
                 {
-                    todoItems.Add(item);
+                    _todoItems.Add(item);
                 });
 
             // TryDelete()
@@ -128,8 +131,8 @@ namespace farmApi.Test
                 .Setup(x => x.TryDelete(It.IsAny<int>()))
                 .Callback<int>(id =>
                 {
-                    var deleteMe = todoItems.First(item => item.Id == id);
-                    todoItems.Remove(deleteMe);
+                    var deleteMe = _todoItems.First(item => item.Id == id);
+                    _todoItems.Remove(deleteMe);
                 })
                 .Returns(true);
 

@@ -1,12 +1,13 @@
-﻿
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using Microsoft.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
-using farmApi.Models;
-using farmApi.DAL.Interfaces;
+using FarmApi.Models;
+using FarmApi.DAL.Interfaces;
 
-namespace farmApi.DAL
+namespace FarmApi.DAL
 {
     public class GenericRepository<TEntity> where TEntity : FarmEntity
     {

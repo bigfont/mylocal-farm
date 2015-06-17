@@ -1,10 +1,11 @@
-﻿
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using farmApi.Models;
+using FarmApi.Models;
 using Microsoft.Data.Entity;
-using farmApi.DAL.Interfaces;
+using FarmApi.DAL.Interfaces;
 
-namespace farmApi.DAL
+namespace FarmApi.DAL
 {
     public class FarmContext : DbContext
     {

@@ -1,4 +1,7 @@
-﻿using Xunit;
+﻿// Copyright (c) Microsoft. All rights reserved.
+// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+
+using Xunit;
 using farmApi.Controllers;
 using farmApi.Models;
 using farmApi.DAL.Interfaces;
@@ -20,7 +23,6 @@ namespace farmApi.Test
     {
         public AccountControllerTests()
         {
-
         }
 
         [Fact]
@@ -42,25 +44,21 @@ namespace farmApi.Test
         [Fact]
         public void EmailVerification_Returns200OnSuccess()
         {
-
         }
 
         [Fact]
         public void EmailVerification_Returns500OnFailure()
         {
-
         }
 
         [Fact]
         public void Login_MakesUserAuthenticated()
         {
-
         }
 
         [Fact]
         public void Logout_MakesUserAnonymous()
         {
-
         }
 
         private AccountController GetController()
