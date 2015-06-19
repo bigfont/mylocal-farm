@@ -28,9 +28,7 @@ namespace FarmApi
 
         public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)
         {
-            app.UseMvc(routes => {
-
-            });
+            app.UseMvc();
 
             this.ConfigurePersistence(serviceProvider);
 
