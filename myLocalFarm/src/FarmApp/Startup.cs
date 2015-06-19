@@ -4,9 +4,8 @@
 using Microsoft.AspNet.Builder;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.SqlServer;
-using Microsoft.Data.Entity.InMemory;
 using Microsoft.AspNet.Http;
+using Microsoft.AspNet.Mvc;
 using System;
 
 // BLL
@@ -29,7 +28,9 @@ namespace FarmApi
 
         public void Configure(IApplicationBuilder app, IServiceProvider serviceProvider)
         {
-            app.UseMvc();
+            app.UseMvc(routes => {
+
+            });
 
             this.ConfigurePersistence(serviceProvider);
 

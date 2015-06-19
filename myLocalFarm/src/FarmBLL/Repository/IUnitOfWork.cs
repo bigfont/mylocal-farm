@@ -11,12 +11,12 @@ namespace FarmBLL.Repository
     /// </remarks>
     public interface IUnitOfWork
     {
-        IQueryable<TEntity> Query<TEntity>() where TEntity : class;
+        IQueryable<TDomainObject> Query<TDomainObject>() where TDomainObject : class;
 
-        IQueryable<TEntity> Load<TEntity>() where TEntity : class;
-        void Create<TEntity>(TEntity entity) where TEntity : class;
-        void Update<TEntity>(TEntity entity) where TEntity : class;
-        void Delete<TEntity>(TEntity entity) where TEntity : class;
+        IQueryable<TDomainObject> Load<TDomainObject>() where TDomainObject : class;
+        void Create<TDomainObject>(TDomainObject entity) where TDomainObject : class;
+        void Update<TDomainObject>(TDomainObject entity) where TDomainObject : class;
+        void Delete<TDomainObject>(TDomainObject entity) where TDomainObject : class;
 
         void Save();
     }

@@ -5789,14 +5789,13 @@
     "": [
       "Microsoft.AspNet.Server.IIS >= 1.0.0-beta6-*",
       "Microsoft.AspNet.Server.WebListener >= 1.0.0-beta6-*",
-      "Microsoft.AspNet.Diagnostics >= 1.0.0-beta6-*",
       "Microsoft.AspNet.Mvc >= 6.0.0-beta6-*",
+      "FarmDAL >= 1.0.0-*",
+      "FarmBLL >= 1.0.0-*",
+      "FarmApi >= 1.0.0-*",
       "EntityFramework >= 7.0.0-beta6-*",
       "EntityFramework.SqlServer >= 7.0.0-beta6-*",
-      "EntityFramework.InMemory >= 7.0.0-beta6-*",
-      "Microsoft.AspNet.Identity >= 3.0.0-beta6-*",
-      "Microsoft.Framework.Caching.Abstractions >= 1.0.0-beta6-*",
-      "FarmBLL >= 1.0.0-*"
+      "EntityFramework.InMemory >= 7.0.0-beta6-*"
     ],
     "DNX,Version=v4.5.1": [],
     "DNXCore,Version=v5.0": []

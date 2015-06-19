@@ -24,27 +24,27 @@ namespace FarmDAL.Repository
             _context = context;
         }
 
-        public IQueryable<TEntity> Query<TEntity>() where TEntity : class
+        public IQueryable<TDomainObject> Query<TDomainObject>() where TDomainObject : class
         {
-            return _context.Set<TEntity>().AsNoTracking();
+            return _context.Set<TDomainObject>().AsNoTracking();
         }
 
-        public IQueryable<TEntity> Load<TEntity>() where TEntity : class
+        public IQueryable<TDomainObject> Load<TDomainObject>() where TDomainObject : class
         {
-            return _context.Set<TEntity>();
+            return _context.Set<TDomainObject>();
         }
 
-        public void Create<TEntity>(TEntity entity) where TEntity : class
+        public void Create<TDomainObject>(TDomainObject entity) where TDomainObject : class
         {
-            _context.Set<TEntity>().Add(entity);
+            _context.Set<TDomainObject>().Add(entity);
         }
 
-        public void Update<TEntity>(TEntity entity) where TEntity : class
+        public void Update<TDomainObject>(TDomainObject entity) where TDomainObject : class
         {
             throw new NotImplementedException();
         }
 
-        public void Delete<TEntity>(TEntity entity) where TEntity : class
+        public void Delete<TDomainObject>(TDomainObject entity) where TDomainObject : class
         {
             throw new NotImplementedException();
         }

@@ -1,8 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
-using FarmDAL.Models;
 using Microsoft.Data.Entity;
+using FarmBLL.Models;
 
 namespace FarmDAL.Models
 {
@@ -12,7 +12,7 @@ namespace FarmDAL.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<TodoItem>().Key(e => e.Id);
+            builder.Entity<TodoItem>();
 
             base.OnModelCreating(builder);
         }
