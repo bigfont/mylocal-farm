@@ -7,6 +7,7 @@ using Microsoft.Data.Entity;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using System;
+using Microsoft.Data.Entity.InMemory;
 
 // BLL
 using FarmBLL.Repository;
@@ -59,10 +60,10 @@ namespace FarmApi
             // choose the persistence mechanism
             services
                 .AddEntityFramework()
-                .AddInMemoryStore()
+                .AddInMemoryDatabase()
                 .AddDbContext<FarmContext>(options =>
                 {
-                    options.UseInMemoryStore(persist: true);
+                    options.UseInMemoryDatabase(persist: true);
                 });
 
             // choose the unit of work implementation
